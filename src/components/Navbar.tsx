@@ -1,4 +1,5 @@
 import { Anchor } from "antd";
+import Home from "./Home";
 
 const Navbar = () => (
     <>
@@ -42,7 +43,11 @@ const Navbar = () => (
           textAlign: 'center',
           background: 'rgba(0,255,0,0.02)',
         }}
-      />
+      >
+        <Home></Home>
+
+      </div>
+      
       <div
         id="service"
         style={{
