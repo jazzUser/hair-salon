@@ -1,6 +1,10 @@
-import { Paper, Button } from '@mui/material';
-import { DataGrid, GridCellParams, GridRowSelectionModel } from '@mui/x-data-grid';
-import { useState, useCallback } from 'react';
+import { Paper, Button } from "@mui/material";
+import {
+  DataGrid,
+  GridCellParams,
+  GridRowSelectionModel,
+} from "@mui/x-data-grid";
+import { useState, useCallback } from "react";
 
 type RowData = {
   id: number;
@@ -11,32 +15,57 @@ type RowData = {
 
 const ServiceTable = () => {
   const [selectedRows, setSelectedRows] = useState<GridRowSelectionModel>([]); // Track selected rows as readonly array
+  const [pageSize, setPageSize] = useState(5); // Default page size
 
   const rows: RowData[] = [
-    { id: 1, type: 'Haircut + Washing + Drying', time: '30 min', price: '$25' },
-    { id: 2, type: 'Haircut + Washing (Drying by yourself)', time: '15 min', price: '$10' },
-    { id: 3, type: 'Short Hair length - Haircut', time: '90 min', price: '$50' },
-    { id: 4, type: 'Middle Hair length- Haircut', time: '90 min', price: '$50' },
-    { id: 5, type: 'Long Hair- Haircut', time: '90 min', price: '$50' },
-    { id: 6, type: 'Coloring + Washing', time: '20 min', price: '$15' },
-    { id: 7, type: 'Washing + Styling', time: '20 min', price: '$15' },
+    { id: 1, type: "Haircut + Washing + Drying", time: "30 min", price: "$25" },
+    {
+      id: 2,
+      type: "Haircut + Washing (Drying by yourself)",
+      time: "15 min",
+      price: "$10",
+    },
+    {
+      id: 3,
+      type: "Short Hair length - Haircut",
+      time: "90 min",
+      price: "$50",
+    },
+    {
+      id: 4,
+      type: "Middle Hair length- Haircut",
+      time: "90 min",
+      price: "$50",
+    },
+    { id: 5, type: "Long Hair- Haircut", time: "90 min", price: "$50" },
+    { id: 6, type: "Coloring + Washing", time: "20 min", price: "$15" },
+    { id: 7, type: "Washing + Styling", time: "20 min", price: "$15" },
   ];
 
   const columns = [
-    { field: 'type', headerName: 'Type', width: 300 },
-    { field: 'time', headerName: 'Time', width: 70 },
-    { field: 'price', headerName: 'Price', width: 70 },
+    { field: "type", headerName: "Type", width: 300 },
+    { field: "time", headerName: "Time", width: 70 },
+    { field: "price", headerName: "Price", width: 200 },
     {
-      field: 'select',
-      headerName: 'Book a Service',
+      field: "select",
+      headerName: "Book a Service",
       width: 120,
       renderCell: (params: GridCellParams) => (
-        <Button 
-          variant="contained" 
-          onClick={() => handleSelectClick(params.row.id)}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            alignItems: "center", // Align button vertically in the middle
+            height: "100%", // Ensure the div takes full height of the cell
+          }}
         >
-          Select
-        </Button>
+          <Button
+            variant="contained"
+            onClick={() => handleSelectClick(params.row.id)}
+          >
+            Select
+          </Button>
+        </div>
       ),
     },
   ];
@@ -46,9 +75,11 @@ const ServiceTable = () => {
     // Handle the selection logic
   };
 
-  const handleBookSelected = () => {
-    alert(`You booked the following items: ${selectedRows.join(', ')}`);
-    // Replace with actual logic for booking selected items
+  const handleAddToCart = () => {
+    alert(
+      `You added the following items to your cart: ${selectedRows.join(", ")}`
+    );
+    // Replace with actual logic for adding to cart
   };
 
   // Update the selected rows when selection changes
@@ -62,28 +93,41 @@ const ServiceTable = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        justifyContent: 'center', // Center horizontally
-        alignItems: 'center', // Center vertically
-        height: '100vh', // Full height of the viewport
+        display: "flex",
+        justifyContent: "center", // Center horizontally
+        alignItems: "center", // Center vertically
+        height: "100vh",
       }}
     >
-      <Paper sx={{ width: '50%', height: '400px' }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          rowSelectionModel={selectedRows} // Bind the selected rows to the state (readonly array)
-          onRowSelectionModelChange={handleRowSelectionChange} // Update selected rows directly
-          sx={{ border: 0 }}
-        />
-        <Button 
-          variant="contained" 
-          color="primary" 
-          onClick={handleBookSelected}
-          style={{ marginTop: '20px' }}
+      <Paper sx={{ width: "50%", height: "400px" }}>
+        <div
+          style={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
-          Book Selected Items
-        </Button>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            rowSelectionModel={selectedRows}
+            onRowSelectionModelChange={handleRowSelectionChange}
+            pagination
+            pageSize={pageSize}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              paddingTop: "20px",
+            }}
+          >
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </Button>
+          </div>
+        </div>
       </Paper>
     </div>
   );
