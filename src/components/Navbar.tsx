@@ -1,6 +1,7 @@
 import { Anchor } from "antd";
 
 import HeroSection from "./HeroSection";
+import ServiceTable from "./ServiceTable";
 
 const Navbar = () => (
     <>
@@ -57,7 +58,9 @@ const Navbar = () => (
           textAlign: 'center',
           background: 'rgba(0,0,255,0.02)',
         }}
-      />
+      >
+      <ServiceTable/>
+       </div>
        <div
         id="contact"
         style={{
