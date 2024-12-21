@@ -2,6 +2,7 @@ import { Anchor } from "antd";
 
 import HeroSection from "./HeroSection";
 import ServiceTable from "./ServiceTable";
+import Contact from "./Contact";
 
 const Navbar = () => (
     <>
@@ -69,7 +70,7 @@ const Navbar = () => (
           textAlign: 'center',
           background: 'rgba(248, 240, 255, 0.97)',
         }}
-      />
+      ><Contact></Contact></div>
       <div
         id="location"
         style={{

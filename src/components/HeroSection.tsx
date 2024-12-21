@@ -2,6 +2,16 @@ import { ScissorOutlined } from "@ant-design/icons";
 import hairdresserImage from "../assets/hairdresser.jpg"; // Correct import of image
 
 const HeroSection = () => {
+  const scrollToService = () => {
+    const serviceSection = document.getElementById("service");
+    if (serviceSection) {
+      serviceSection.scrollIntoView({
+        behavior: "smooth", // Smooth scrolling
+        block: "start", // Align at the start of the section
+      });
+    }
+  };
+
   return (
     <div
       style={{
@@ -45,13 +55,14 @@ const HeroSection = () => {
           Your perfect hair styling experience awaits.
         </p>
         <button
+          onClick={scrollToService}
           style={{
             padding: "clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px)", // Responsive padding for button
             backgroundColor: "#4CAF50",
             border: "none",
             borderRadius: "5px",
             color: "white",
-            fontSize: 'clamp(1rem, 2.5vw, 1.5rem)', 
+            fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
             fontFamily: "Times New Roman", // Responsive font size for button
             cursor: "pointer",
           }}
