@@ -99,7 +99,7 @@ const ServiceTable = () => {
         height: "100vh",
       }}
     >
-      <Paper sx={{ width: "50%", height: "400px" }}>
+      <Paper sx={{ width: "50%", height: "550px" }}>
         <div
           style={{ display: "flex", flexDirection: "column", height: "100%" }}
         >
@@ -116,7 +116,7 @@ const ServiceTable = () => {
             style={{
               display: "flex",
               justifyContent: "flex-end",
-              paddingTop: "20px",
+              padding: "20px",
             }}
           >
             <Button
