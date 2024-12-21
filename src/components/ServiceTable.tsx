@@ -19,24 +19,9 @@ const ServiceTable = () => {
 
   const rows: RowData[] = [
     { id: 1, type: "Haircut + Washing + Drying", time: "30 min", price: "$25" },
-    {
-      id: 2,
-      type: "Haircut + Washing (Drying by yourself)",
-      time: "15 min",
-      price: "$10",
-    },
-    {
-      id: 3,
-      type: "Short Hair length - Haircut",
-      time: "90 min",
-      price: "$50",
-    },
-    {
-      id: 4,
-      type: "Middle Hair length- Haircut",
-      time: "90 min",
-      price: "$50",
-    },
+    { id: 2, type: "Haircut + Washing (Drying by yourself)", time: "15 min", price: "$10" },
+    { id: 3, type: "Short Hair length - Haircut", time: "90 min", price: "$50" },
+    { id: 4, type: "Middle Hair length- Haircut", time: "90 min", price: "$50" },
     { id: 5, type: "Long Hair- Haircut", time: "90 min", price: "$50" },
     { id: 6, type: "Coloring + Washing", time: "20 min", price: "$15" },
     { id: 7, type: "Washing + Styling", time: "20 min", price: "$15" },
@@ -94,15 +79,21 @@ const ServiceTable = () => {
     <div
       style={{
         display: "flex",
-        justifyContent: "center", // Center horizontally
-        alignItems: "center", // Center vertically
-        height: "100vh",
+        flexDirection: "column", // Stack the heading and table vertically
+        justifyContent: "flex-start", // Align items at the top
+        alignItems: "center", // Center horizontally
+        height: "100vh", // Take full viewport height
+        padding: "20px", // Add some padding around the content
       }}
     >
-      <Paper sx={{ width: "50%", height: "550px" }}>
-        <div
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
-        >
+      {/* Centered heading */}
+      <h1 style={{ textAlign: "center", marginBottom: "20px" }}>
+        Book your desired Service:
+      </h1>
+
+      {/* Paper container for the table */}
+      <Paper sx={{ width: "50%", height: "550px", position: "relative" }}>
+        <div style={{ display: "flex", flexDirection: "column", height: "100%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -111,6 +102,7 @@ const ServiceTable = () => {
             pagination
             pageSize={pageSize}
             onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            sx={{ flexGrow: 1 }} // Make the DataGrid grow to fill available space
           />
           <div
             style={{
