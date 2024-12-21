@@ -21,6 +21,11 @@ const Navbar = () => (
             title: 'Service',
           },
           {
+            key: 'contact',
+            href: '#contact',
+            title: 'Contact',
+          },
+          {
             key: 'location',
             href: '#location',
             title: 'Location',
@@ -45,6 +50,15 @@ const Navbar = () => (
           height: '100vh',
           textAlign: 'center',
           background: 'rgba(0,0,255,0.02)',
+        }}
+      />
+       <div
+        id="contact"
+        style={{
+          width: '100vw',
+          height: '100vh',
+          textAlign: 'center',
+          background: 'rgba(248, 240, 255, 0.97)',
         }}
       />
       <div
