@@ -1,5 +1,6 @@
 import { Anchor } from "antd";
-import Home from "./Home";
+
+import HeroSection from "./HeroSection";
 
 const Navbar = () => (
     <>
@@ -44,7 +45,7 @@ const Navbar = () => (
           background: 'rgba(0,255,0,0.02)',
         }}
       >
-        <Home></Home>
+        <HeroSection/>
 
       </div>
       

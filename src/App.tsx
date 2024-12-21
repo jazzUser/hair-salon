@@ -1,5 +1,6 @@
 
 import './App.css'
+import './index.css'; // Tailwind's styles
 import Navbar from './components/Navbar'
 
 function App() {
