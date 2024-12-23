@@ -3,6 +3,7 @@ import { Anchor } from "antd";
 import HeroSection from "./HeroSection";
 import ServiceTable from "./ServiceTable";
 import Contact from "./Contact";
+import MyMap from "./MyMap";
 
 const Navbar = () => (
     <>
@@ -77,12 +78,16 @@ const Navbar = () => (
       <div
         id="location"
         style={{
-          width: '100vw',
-          height: '100vh',
-          textAlign: 'center',
-          background: '#FFFBE9',
+          display: "flex",
+          justifyContent: "center", // Center horizontally
+          alignItems: "center", // Center vertically
+          width: "100vw",
+          height: "100vh", // Ensure full viewport height
+          background: "rgba(0,0,255,0.02)",
         }}
-      />
+      >
+          <MyMap />
+      </div>
     </div>
   </>
 );
