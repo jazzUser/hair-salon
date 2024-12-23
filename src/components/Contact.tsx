@@ -72,10 +72,11 @@ const Contact = () => {
             }}
           />
           <Button
-            variant="contained"
+            variant="outlined"
             color="primary"
             style={{
-              padding: "10px 20px",
+              fontSize: "clamp(1rem, 2vw, 1.2rem)", // Responsive button text size
+              padding: "8px 16px",
               alignSelf: "center",
             }}
           >
