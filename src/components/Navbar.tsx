@@ -54,10 +54,13 @@ const Navbar = () => (
       <div
         id="service"
         style={{
-          width: '100vw',
-          height: '100vh',
-          textAlign: 'center',
-          background: 'rgba(0,0,255,0.02)',
+          display: "flex",
+          justifyContent: "center", // Center horizontally
+          alignItems: "center", // Center vertically
+          flexDirection: "column", // Stack content vertically (title and table)
+          width: "100vw",
+          height: "100vh", // Ensure full viewport height
+          background: "rgba(0,0,255,0.02)",
         }}
       >
       <ServiceTable/>

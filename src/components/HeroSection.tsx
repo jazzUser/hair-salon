@@ -16,7 +16,7 @@ const HeroSection = () => {
     <div
       style={{
         height: "100vh", // Full screen height
-        display: "flex", // Flexbox to center content horizontally
+        display: "flex", // Flexbox to center content horizontally and vertically
         justifyContent: "center", // Center horizontally
         alignItems: "center", // Center vertically
         flexDirection: "column", // Stack elements vertically
@@ -29,14 +29,14 @@ const HeroSection = () => {
     >
       <div
         style={{
-          transform: "translateY(-45%)", // Move content up by 15% of its height, without affecting image
+          transform: "translateY(-10%)", // Adjust vertical position slightly
           width: "100%",
           maxWidth: "90%", // Prevent overflow on smaller screens
         }}
       >
         <h1
           style={{
-            fontSize: "clamp(2.5rem, 8vw, 6rem)", // Responsive font size for small screens
+            fontSize: "clamp(3rem, 8vw, 7rem)", // Responsive font size for Hairdresser title
             marginBottom: "0px",
             whiteSpace: "nowrap", // Prevent breaking into multiple lines for large screens
           }}
@@ -48,7 +48,7 @@ const HeroSection = () => {
         </h1>
         <p
           style={{
-            fontSize: "clamp(1rem, 4vw, 2rem)", // Responsive font size for smaller screens
+            fontSize: "clamp(1.5rem, 4vw, 2.5rem)", // Responsive font size for paragraph
             marginBottom: "30px",
           }}
         >
@@ -57,12 +57,12 @@ const HeroSection = () => {
         <button
           onClick={scrollToService}
           style={{
-            padding: "clamp(8px, 2vw, 12px) clamp(16px, 4vw, 24px)", // Responsive padding for button
+            padding: "clamp(12px, 2vw, 16px) clamp(24px, 4vw, 32px)", // Responsive padding for button
             backgroundColor: "#4CAF50",
             border: "none",
             borderRadius: "5px",
             color: "white",
-            fontSize: "clamp(1rem, 2.5vw, 1.5rem)",
+            fontSize: "clamp(1.2rem, 3vw, 2rem)", // Responsive font size for button
             fontFamily: "Times New Roman", // Responsive font size for button
             cursor: "pointer",
           }}
