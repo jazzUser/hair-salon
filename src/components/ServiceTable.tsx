@@ -1,10 +1,5 @@
-import { Paper, Button } from "@mui/material";
-import {
-  DataGrid,
-  GridCellParams,
-  GridRowSelectionModel,
-} from "@mui/x-data-grid";
-import { useState, useCallback } from "react";
+import { Paper, Button, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import { useState } from "react";
 
 type RowData = {
   id: number;
@@ -14,8 +9,7 @@ type RowData = {
 };
 
 const ServiceTable = () => {
-  const [selectedRows, setSelectedRows] = useState<GridRowSelectionModel>([]); // Track selected rows as readonly array
-  const [pageSize, setPageSize] = useState(5); // Default page size
+  const [selectedRows, setSelectedRows] = useState<number[]>([]);
 
   const rows: RowData[] = [
     { id: 1, type: "Haircut + Washing + Drying", time: "30 min", price: "$25" },
@@ -42,107 +36,95 @@ const ServiceTable = () => {
     { id: 7, type: "Washing + Styling", time: "20 min", price: "$15" },
   ];
 
-  const columns = [
-    { field: "type", headerName: "Type", width: 300 },
-    { field: "time", headerName: "Time", width: 70 },
-    { field: "price", headerName: "Price", width: 200 },
-    {
-      field: "select",
-      headerName: "Book a Service",
-      width: 120,
-      renderCell: (params: GridCellParams) => (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            alignItems: "center", // Align button vertically in the middle
-            height: "100%", // Ensure the div takes full height of the cell
-          }}
-        >
-          <Button
-            variant="contained"
-            onClick={() => handleSelectClick(params.row.id)}
-          >
-            Select
-          </Button>
-        </div>
-      ),
-    },
-  ];
-
   const handleSelectClick = (id: number) => {
-    alert(`You selected the service with ID: ${id}`);
-    // Handle the selection logic
-  };
-
-  const handleAddToCart = () => {
-    alert(
-      `You added the following items to your cart: ${selectedRows.join(", ")}`
+    setSelectedRows((prevSelected) =>
+      prevSelected.includes(id)
+        ? prevSelected.filter((rowId) => rowId !== id)
+        : [...prevSelected, id]
     );
-    // Replace with actual logic for adding to cart
   };
-
-  // Update the selected rows when selection changes
-  const handleRowSelectionChange = useCallback(
-    (newSelectionModel: GridRowSelectionModel) => {
-      setSelectedRows(newSelectionModel); // Set the selected rows directly (read-only array)
-    },
-    []
-  );
 
   return (
     <div
       style={{
         display: "flex",
-        flexDirection: "column", // Stack the heading and table vertically
-        justifyContent: "flex-start", // Align items at the top
-        alignItems: "center", // Center horizontally
-        height: "100vh", // Take full viewport height
-        padding: "20px", // Add some padding around the content
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+        width: "100%",
+        overflow: "hidden",
       }}
     >
-      {/* Centered heading */}
       <h2
         style={{
           textAlign: "center",
-          marginBottom: "20px",
-          fontSize: "clamp(2rem, 6vw, 3rem)",
+          fontSize: "clamp(1.5rem, 5vw, 2.5rem)", // Responsive font size for header
         }}
       >
         Book your desired Service:
       </h2>
 
-      {/* Paper container for the table */}
-      <Paper sx={{ width: "50%", height: "550px", position: "relative" }}>
-        <div
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+      <Paper
+        sx={{
+          width: "100%", // Full width
+          maxWidth: "1000px", // Optional, control maximum width of table
+          position: "relative",
+          margin: "0 auto", // Center horizontally
+          overflow: "hidden", // Prevent scroll inside Paper
+        }}
+      >
+        <TableContainer
+          style={{
+            overflow: "hidden", // Disable overflow
+          }}
         >
-          <DataGrid
-            rows={rows}
-            columns={columns}
-            rowSelectionModel={selectedRows}
-            onRowSelectionModelChange={handleRowSelectionChange}
-            pagination
-            pageSize={pageSize}
-            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-            sx={{ flexGrow: 1 }} // Make the DataGrid grow to fill available space
-          />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              padding: "20px",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleAddToCart}
-            >
-              Add to Cart
-            </Button>
-          </div>
-        </div>
+          <Table aria-label="services table">
+            <TableBody>
+              {rows.map((row) => (
+                <TableRow key={row.id}>
+                  <TableCell
+                    style={{
+                      fontSize: "clamp(1rem, 2vw, 1.2rem)",
+                      paddingLeft: "50px",
+                    }}
+                  >
+                    {row.type}
+                  </TableCell>
+                  <TableCell
+                    style={{
+                      fontSize: "clamp(1rem, 2vw, 1.2rem)",
+                    }}
+                  >
+                    {row.time}
+                  </TableCell>
+                  <TableCell
+                    style={{
+                      fontSize: "clamp(1rem, 2vw, 1.2rem)",
+                    }}
+                  >
+                    {row.price}
+                  </TableCell>
+                  <TableCell
+                    style={{
+                      textAlign: "center", // Center the button
+                    }}
+                  >
+                    <Button
+                      variant={selectedRows.includes(row.id) ? "contained" : "outlined"} // Toggle button variant
+                      style={{
+                        fontSize: "clamp(1rem, 2vw, 1.2rem)",
+                      }}
+                      onClick={() => handleSelectClick(row.id)}
+                    >
+                      {selectedRows.includes(row.id) ? "Selected" : "Select"} {/* Toggle button text */}
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </div>
   );
