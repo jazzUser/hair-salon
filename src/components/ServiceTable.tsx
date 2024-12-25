@@ -22,11 +22,7 @@ const ServiceTable = () => {
   ];
 
   const handleSelectClick = (id: number) => {
-    setSelectedRows((prevSelected) =>
-      prevSelected.includes(id)
-        ? prevSelected.filter((rowId) => rowId !== id)
-        : [...prevSelected, id]
-    );
+    setSelectedRows([id]);
   };
 
   return (
