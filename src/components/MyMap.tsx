@@ -33,7 +33,7 @@ const MyMap = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "100vh", // Ensure full height for the container
-        width: "100%",
+        width: "80%",
       }}
     >
       {/* Map Header */}
@@ -52,8 +52,8 @@ const MyMap = () => {
           display: "flex",
           justifyContent: "center", // Center map horizontally
           alignItems: "center", // Center map vertically
-          width: "100%", // Take full width
-          height: "80%", // Take a good portion of the height to make the map larger
+          width: "50%", // Take full width
+          height: "50%", // Take a good portion of the height to make the map larger
         }}
       >
         <LoadScript googleMapsApiKey={googleMapsApiKey}>

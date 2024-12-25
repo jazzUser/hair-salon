@@ -7,7 +7,7 @@ const Contact = () => {
         width: "100vw",
         height: "100vh",
         textAlign: "center",
-        background: 'rgba(248, 240, 255, 0.97)', // light background
+        background: 'rgba(248, 240, 255, 0.97)',
       }}
     >
       <Box
@@ -31,7 +31,7 @@ const Contact = () => {
         <form
           style={{
             width: "80%",
-            maxWidth: "600px", // Restrict form width for large screens
+            maxWidth: "600px",
             display: "flex",
             flexDirection: "column",
             gap: "20px",
